@@ -18,7 +18,7 @@ This is a dynamic news website built using **HTML, CSS, and JavaScript**, integr
 - **HTML5** – Structure the web pages  
 - **CSS3** – Styling and layout  
 - **JavaScript** – Fetch news data and enhance interactivity  
-- **News API** – Provides real-time news updates  
+- **News API** – Provides real-time news updates from various sources 
 
 📌 How to Clone and Run the Project  
 
