@@ -11,7 +11,7 @@ This is a dynamic news website built using **HTML, CSS, and JavaScript**, integr
 ✅ **Search Functionality** – Find news articles related to specific topics  
 ✅ **Category-Based Filtering** – Browse news from categories like **Technology, Sports, Business, Entertainment**, and more  
 ✅ **Interactive UI** – A clean, responsive, and user-friendly interface  
-✅ **Live Demo** – Experience the website in action by cloning the repository  
+
 
 🚀 Technologies Used  
 
