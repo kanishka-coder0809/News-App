@@ -40,7 +40,7 @@ start index.html   # Windows
 open index.html    # macOS  
 xdg-open index.html # Linux  
 ```
- 4️⃣ Get Your Own API Key
+Get Your Own API Key
 If you'd like to fetch live news from the API, replace the existing **API Key** in the JavaScript file with your own. You can get one from [NewsAPI.org](https://newsapi.org/).  
 
 ![image](https://github.com/user-attachments/assets/dd259c4d-e89c-4475-a945-4d449127c7f9)
