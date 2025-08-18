@@ -1,5 +1,6 @@
-const API_KEY = "732884039a444e8c89b461ead12c6e3e";
-const url = "https://newsapi.org/v2/everything?q=";
+// ❌ Remove API key from frontend (it will stay safe in Netlify env vars)
+// const API_KEY = "...";
+// const url = "https://newsapi.org/v2/everything?q=";
 
 window.addEventListener("load", () => fetchNews("India"));
 
@@ -8,9 +9,21 @@ function reload() {
 }
 
 async function fetchNews(query) {
-    const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
-    const data = await res.json();
-    bindData(data.articles);
+    try {
+        // ✅ Call Netlify function instead of NewsAPI directly
+        let url = `/.netlify/functions/news?q=${encodeURIComponent(query)}`;
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.articles) {
+            bindData(data.articles);
+        } else {
+            console.error("No articles found", data);
+        }
+    } catch (error) {
+        console.error("Error fetching news:", error);
+    }
 }
 
 function bindData(articles) {
@@ -67,6 +80,7 @@ searchButton.addEventListener("click", () => {
     curSelectedNav?.classList.remove("active");
     curSelectedNav = null;
 });
+
 const hamburger = document.getElementById("hamburger");
 const navLinks = document.getElementById("nav-links");
 
