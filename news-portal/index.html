@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="main-nav container flex">
+            <a href="#" onclick="reload()" class="company-logo">
+                <img src="news.jpg" alt="company logo">
+            </a>
+
+            <!-- Hamburger button for mobile -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Navigation links -->
+            <div class="nav-links" id="nav-links">
+                <ul>
+                    <li class="hover-link nav-item" onclick="onNavItemClick('India')">India</li>
+                    <li class="hover-link nav-item" onclick="onNavItemClick('Technology')">Technology</li>
+                    <li class="hover-link nav-item" onclick="onNavItemClick('Science')">Science</li>
+                    <li class="hover-link nav-item" onclick="onNavItemClick('Finance')">Finance</li>
+                    <li class="hover-link nav-item" onclick="onNavItemClick('Politics')">Politics</li>
+                    <li class="hover-link nav-item" onclick="onNavItemClick('Sports')">Sports</li>
+                    <li class="hover-link nav-item" onclick="onNavItemClick('Entertainment')">Entertainment</li>
+                    <li class="hover-link nav-item" onclick="onNavItemClick('Health')">Health</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search bar outside navbar -->
+    <div class="search-container container flex">
+        <input id="search-text" type="text" class="news-input" placeholder="Search news...">
+        <button id="search-button" class="search-button">Search</button>
+    </div>
+
+    <!-- Main content -->
+    <main>
+        <div class="cards-container container flex" id="cards-container">
+            <!-- News cards will be appended here dynamically -->
+        </div>
+    </main>
+
+    <!-- News card template -->
+    <template id="template-news-card">
+        <div class="card">
+            <div class="card-header">
+                <img src="https://via.placeholder.com/400x200" alt="news-image" id="news-img">
+            </div>
+            <div class="card-content">
+                <h3 id="news-title">Title</h3>
+                <h6 class="news-source" id="news-source">Source · Date</h6>
+                <p class="news-desc" id="news-desc">Description...</p>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
