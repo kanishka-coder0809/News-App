@@ -89,7 +89,3 @@ This project is deployed on **Netlify** with serverless functions for secure API
 👉 *https://globalink-news.netlify.app/*
 
 ---
-
-
-
-Do you want me to also add a **badges section** (like “Netlify Deploy | License | JavaScript”) at the top to make it look more pro on GitHub?
