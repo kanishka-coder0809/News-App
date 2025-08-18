@@ -1,6 +1,4 @@
-// ❌ Remove API key from frontend (it will stay safe in Netlify env vars)
-// const API_KEY = "...";
-// const url = "https://newsapi.org/v2/everything?q=";
+// ✅ No API key here (kept safe in Netlify environment variable)
 
 window.addEventListener("load", () => fetchNews("India"));
 
@@ -11,18 +9,26 @@ function reload() {
 async function fetchNews(query) {
     try {
         // ✅ Call Netlify function instead of NewsAPI directly
-        let url = `/.netlify/functions/news?q=${encodeURIComponent(query)}`;
-
+        const url = `/.netlify/functions/news?q=${encodeURIComponent(query)}`;
         const res = await fetch(url);
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
         const data = await res.json();
 
-        if (data.articles) {
+        if (data.articles && Array.isArray(data.articles)) {
             bindData(data.articles);
         } else {
             console.error("No articles found", data);
+            document.getElementById("cards-container").innerHTML =
+                "<p>No news found 😢</p>";
         }
     } catch (error) {
         console.error("Error fetching news:", error);
+        document.getElementById("cards-container").innerHTML =
+            "<p>Failed to load news 🚨</p>";
     }
 }
 
@@ -33,7 +39,7 @@ function bindData(articles) {
     cardsContainer.innerHTML = "";
 
     articles.forEach((article) => {
-        if (!article.urlToImage) return;
+        if (!article.urlToImage) return; // skip articles with no image
         const cardClone = newsCardTemplate.content.cloneNode(true);
         fillDataInCard(cardClone, article);
         cardsContainer.appendChild(cardClone);
@@ -47,14 +53,14 @@ function fillDataInCard(cardClone, article) {
     const newsDesc = cardClone.querySelector("#news-desc");
 
     newsImg.src = article.urlToImage;
-    newsTitle.innerHTML = article.title;
-    newsDesc.innerHTML = article.description;
+    newsTitle.textContent = article.title;
+    newsDesc.textContent = article.description || "";
 
     const date = new Date(article.publishedAt).toLocaleString("en-US", {
         timeZone: "Asia/Jakarta",
     });
 
-    newsSource.innerHTML = `${article.source.name} · ${date}`;
+    newsSource.textContent = `${article.source?.name || "Unknown"} · ${date}`;
 
     cardClone.firstElementChild.addEventListener("click", () => {
         window.open(article.url, "_blank");
@@ -74,7 +80,7 @@ const searchButton = document.getElementById("search-button");
 const searchText = document.getElementById("search-text");
 
 searchButton.addEventListener("click", () => {
-    const query = searchText.value;
+    const query = searchText.value.trim();
     if (!query) return;
     fetchNews(query);
     curSelectedNav?.classList.remove("active");
