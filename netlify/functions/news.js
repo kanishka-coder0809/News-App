@@ -1,8 +1,9 @@
-import fetch from "node-fetch";
+import fetch from "node-fetch"; // if Node <18, otherwise remove this line
 
-export async function handler(event, context) {
+export async function handler(event) {
   try {
-    const query = event.queryStringParameters.q || "India"; // default query
+    const query = event.queryStringParameters.q || "India";
+
     const res = await fetch(
       `https://newsapi.org/v2/everything?q=${query}&apiKey=${process.env.NEWS_API_KEY}`
     );
