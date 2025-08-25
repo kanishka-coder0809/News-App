@@ -83,7 +83,7 @@ This project is deployed on **Netlify** with serverless functions for secure API
 4. Deploy → your app will be live 🎉
 
 ---
-
+Made with Love ❤️ By Kanishka
 ## 📸 Demo
 
 👉 *https://globalink-news.netlify.app/*
