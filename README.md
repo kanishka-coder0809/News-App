@@ -4,7 +4,6 @@
 A simple, responsive **News Application** built with **HTML, CSS, JavaScript** and powered by the **NewsAPI**.
 This project is deployed on **Netlify** with serverless functions for secure API key handling.
 
----
 
 ## ✨ Features
 
